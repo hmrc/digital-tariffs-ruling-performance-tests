@@ -11,16 +11,12 @@ class RulingUiSimulation extends PerformanceTestRunner with DigitalTariffsPerfor
   override val httpProtocol: HttpProtocolBuilder = {
     buildHttpProtocol(url = externalBaseUrl)
   }
+    setup("rulingUI", "Trader searches for rulings") withRequests(
+      getStartPage,
+      searchPage,
+      getQueryResultPage
+  )
 
-  private val scn =
-    scenario("UK Trader searches for existing rulings")
-      .exec(getStartPage).exec(pause(waitTime))
-      .exec(searchPage).exec(pause(waitTime))
-      .exec(getQueryResultPage).exec(pause(waitTime))
-
-  // TODO: when the `performance-test-runner` is fixed, we should use it here
-  setUp(scn.inject(simulationSteps))
-    .protocols(httpProtocol)
-    .assertions(simulationAssertion)
+  runSimulation()
 
 }
