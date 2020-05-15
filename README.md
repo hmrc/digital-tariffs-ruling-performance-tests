@@ -17,7 +17,7 @@ sbt -Dperftest.runSmokeTest=true -DrunLocal=true gatling:test
 ## Jenkins
 
 #### Jenkins job
-https://performance.tools.staging.tax.service.gov.uk/job/digital-tariffs-ruiling-performance-tests/
+https://performance.tools.staging.tax.service.gov.uk/job/digital-tariffs-ruling-performance-tests/
 
 #### Jenkins configurations
 https://github.com/hmrc/performance-test-jobs/blob/master/jobs/live/digital_tariffs.groovy
