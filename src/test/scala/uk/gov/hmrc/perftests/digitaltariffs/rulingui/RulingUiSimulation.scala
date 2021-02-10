@@ -13,7 +13,6 @@ class RulingUiSimulation extends PerformanceTestRunner with DigitalTariffsPerfor
   }
     setup("rulingUI", "Trader searches for rulings") withRequests(
       getStartPage,
-      searchPage,
       getQueryResultPage
   )
 

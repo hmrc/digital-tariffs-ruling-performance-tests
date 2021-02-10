@@ -7,19 +7,13 @@ import uk.gov.hmrc.perftests.digitaltariffs.DigitalTariffsPerformanceTestRunner
 
 object RulingUiRequests extends DigitalTariffsPerformanceTestRunner {
 
-  private val homePage = s"$rulingUiBaseUrl"
+  private val homePage = s"$rulingUiBaseUrl/search?enableTrackingConsent=true"
 
   def getStartPage: HttpRequestBuilder = {
     http("Start Page")
-      .get(rulingUiBaseUrl)
+      .get(s"$rulingUiBaseUrl/search?enableTrackingConsent=true")
       .check(status.is(200))
       .check(currentLocation.is(homePage))
-  }
-
-  def searchPage: HttpRequestBuilder = {
-    http("Search Page")
-      .get(s"$rulingUiBaseUrl/search")
-      .check(status.is(200))
   }
 
   def getQueryResultPage: HttpRequestBuilder = {
