@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,26 +27,26 @@ import scala.concurrent.duration._
 
 trait DigitalTariffsPerformanceTestRunner extends PerformanceTestRunner with ServicesConfiguration {
 
-  protected def buildHttpProtocol(url: String): HttpProtocolBuilder = {
+  protected def buildHttpProtocol(url: String): HttpProtocolBuilder =
     http
       .userAgentHeader("DigitalTariffs-PerformanceTests")
       .connectionHeader("close")
       .baseUrl(url)
-  }
 
   protected val externalBaseUrl = "https://www.staging.tax.service.gov.uk"
 
-  protected val rulingUiBaseUrl = baseUrlFor("binding-tariff-ruling-frontend") + "/search-for-advance-tariff-rulings"
+  protected val rulingUiBaseUrl: String =
+    baseUrlFor("binding-tariff-ruling-frontend") + "/search-for-advance-tariff-rulings"
 
-  protected val rate = 0.5D
-  protected val rampInterval = 1.minute  // 5.seconds
-  protected val mainInterval = 8.minutes // 15.seconds
+  protected val rate: Double                 = 0.5d
+  protected val rampInterval: FiniteDuration = 1.minute // 5.seconds
+  protected val mainInterval: FiniteDuration = 8.minutes // 15.seconds
 
   protected def simulationSteps: Seq[OpenInjectionStep] =
     Seq(
       rampUsersPerSec(0).to(rate).during(rampInterval), // growth
-      constantUsersPerSec(rate).during(mainInterval),          // constant
-      rampUsersPerSec(rate).to(0).during(rampInterval)  // shutting down
+      constantUsersPerSec(rate).during(mainInterval), // constant
+      rampUsersPerSec(rate).to(0).during(rampInterval) // shutting down
     )
 
   protected def simulationAssertion: Seq[Assertion] =
