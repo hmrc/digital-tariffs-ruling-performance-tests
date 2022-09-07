@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,23 +19,22 @@ package uk.gov.hmrc.perftests.digitaltariffs.rulingui
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
+import io.netty.handler.codec.http.HttpResponseStatus
 import uk.gov.hmrc.perftests.digitaltariffs.DigitalTariffsPerformanceTestRunner
 
 object RulingUiRequests extends DigitalTariffsPerformanceTestRunner {
 
   private val homePage = s"$rulingUiBaseUrl/search?enableTrackingConsent=true"
 
-  def getStartPage: HttpRequestBuilder = {
+  def getStartPage: HttpRequestBuilder =
     http("Start Page")
       .get(s"$rulingUiBaseUrl/search?enableTrackingConsent=true")
-      .check(status.is(200))
+      .check(status.is(HttpResponseStatus.OK.code()))
       .check(currentLocation.is(homePage))
-  }
 
-  def getQueryResultPage: HttpRequestBuilder = {
+  def getQueryResultPage: HttpRequestBuilder =
     http("Search Results")
       .get(s"$rulingUiBaseUrl/search?query=laptop")
-      .check(status.is(200))
-  }
+      .check(status.is(HttpResponseStatus.OK.code()))
 
 }
