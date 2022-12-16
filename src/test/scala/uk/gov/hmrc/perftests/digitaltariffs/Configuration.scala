@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.perftests.digitaltariffs.rulingui
+package uk.gov.hmrc.perftests.digitaltariffs
 
-import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
-import uk.gov.hmrc.perftests.digitaltariffs.rulingui.RulingUiRequests._
+import uk.gov.hmrc.performance.conf.ServicesConfiguration
 
-class RulingUiSimulation extends PerformanceTestRunner {
+trait Configuration extends ServicesConfiguration {
 
-  setup("rulingUI", "Trader searches for rulings").withRequests(
-    getStartPage,
-    getQueryResultPage
-  )
+  protected val rulingUiBaseUrl: String =
+    baseUrlFor("binding-tariff-ruling-frontend") + "/search-for-advance-tariff-rulings"
 
-  runSimulation()
 }

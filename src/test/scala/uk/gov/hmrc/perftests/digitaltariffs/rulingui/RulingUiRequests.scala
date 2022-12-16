@@ -20,9 +20,9 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
 import io.netty.handler.codec.http.HttpResponseStatus
-import uk.gov.hmrc.perftests.digitaltariffs.DigitalTariffsPerformanceTestRunner
+import uk.gov.hmrc.perftests.digitaltariffs.Configuration
 
-object RulingUiRequests extends DigitalTariffsPerformanceTestRunner {
+object RulingUiRequests extends Configuration {
 
   private val homePage = s"$rulingUiBaseUrl/search?enableTrackingConsent=true"
 

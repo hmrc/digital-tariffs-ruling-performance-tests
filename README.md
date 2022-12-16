@@ -27,7 +27,7 @@ Clone this project:
 https://github.com/hmrc/service-manager-config/
 
 #### Mongo
-Run an instance of Mongo database. Version 3.6.1 is recommended.
+Run an instance of Mongo database. Version 4.2 is recommended.
 
 #### Localstack
 Please ensure you have Docker installed before continuing with these steps.
@@ -110,10 +110,13 @@ For all tests to run the `sm -s` command should result in something like the tab
 +----------------------------------+------+------+-------------+--------+-------+---------+-----------------+----------+-------------+
 ```
 ##### command for running all Gatling simulations in Localhost
+
+Full:
+```shell
+./run_local.sh
 ```
-sbt -DrunLocal=true gatling:test or
 
-To run smoke test
-sbt -Dperftest.runSmokeTest=true -DrunLocal=true gatling:test
-
+Smoke:
+```shell
+./run_smoke_test_local.sh
 ```
