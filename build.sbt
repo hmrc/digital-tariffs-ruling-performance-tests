@@ -1,7 +1,7 @@
-ThisBuild / scalaVersion := "2.13.14"
+ThisBuild / scalaVersion := "2.13.16"
 
 lazy val root = (project in file("."))
-  .enablePlugins(SbtAutoBuildPlugin, GatlingPlugin)
+  .enablePlugins(GatlingPlugin)
   .settings(
     name := "digital-tariffs-ruling-performance-tests",
     version := "2.0.0",
